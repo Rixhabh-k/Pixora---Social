@@ -1,0 +1,327 @@
+#main {
+    height: 100vh;
+    width: 100%;
+    background: #343434;
+
+    display: flex;
+
+}
+
+.left-container {
+    height: 100%;
+    width: 50%;
+    background: #070707;
+
+    .left-wrapper {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .left-top {
+            h1 {
+                font-size: 2rem;
+                font-weight: 300;
+                text-align: center;
+                color: white;
+
+                span {
+                    background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                }
+            }
+        }
+
+        .left-bottom {
+            height: auto;
+
+            .loginImage {
+                height: 300px;
+            }
+        }
+    }
+}
+
+.right-container {
+    height: 100%;
+    width: 50%;
+    background: #161616;
+
+    border-left: 2px solid rgb(102, 96, 96);
+
+    .right-wrapper {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        .top-text {
+            color: white;
+            text-align: start;
+
+            h1 {
+                font-weight: 300;
+                font-size: 1.2rem;
+                text-align: start;
+            }
+        }
+
+        .login-form {
+            width: 60%;
+
+            form {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                input {
+                    width: 100%;
+                    border: none;
+                    background: #161616;
+                    border: 1px solid gray;
+                    padding: 15px;
+                    border-radius: 1rem;
+                    outline: white;
+                    color: white;
+                }
+
+                button {
+                    width: 100%;
+                    border: none;
+                    background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+                    padding: 15px;
+                    cursor: pointer;
+                    border-radius: 1rem;
+                    font-size: 1rem;
+                    color: white;
+                    font-weight: 700;
+                }
+
+                button:disabled {
+                    opacity: 0.7;
+                    cursor: not-allowed;
+                }
+            }
+
+        }
+
+        .forget-password {
+            width: 60%;
+            padding: 15px;
+            border-radius: 1rem;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+            transition: all 0.1s;
+        }
+
+        .forget-password:hover {
+            background: #272424;
+        }
+
+        .registerLink {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 60%;
+            padding: 15px;
+            border-radius: 1rem;
+            border: 2px solid transparent;
+
+            background:
+                linear-gradient(#161616, #161616) padding-box,
+                linear-gradient(90deg, #8b5cf6, #3b82f6) border-box;
+
+            color: white;
+            text-decoration: none;
+
+            background-clip: padding-box, border-box;
+
+            span {
+                background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+    }
+}
+
+
+/* ========================= */
+/* Tablet */
+/* ========================= */
+@media (max-width: 1024px) {
+
+    .left-container,
+    .right-container {
+        width: 50%;
+    }
+
+    .left-container {
+        .left-wrapper {
+            .left-top {
+                h1 {
+                    font-size: 1.6rem;
+                }
+            }
+
+            .left-bottom {
+                .loginImage {
+                    height: 240px;
+                }
+            }
+        }
+    }
+
+    .right-container {
+        .right-wrapper {
+
+            .login-form,
+            .forget-password,
+            .registerLink {
+                width: 80%;
+            }
+
+            .top-text {
+                width: 80%;
+            }
+        }
+    }
+}
+
+
+/* ========================= */
+/* Mobile */
+/* ========================= */
+@media (max-width: 768px) {
+
+    #main {
+        flex-direction: column;
+        height: 100vh;
+        min-height: 100vh;
+    }
+
+    // .left-container{
+    //     display: none;
+    // }
+
+    .left-container,
+    .right-container {
+        width: 100%;
+        height: auto;
+    }
+
+    .left-container {
+        padding: 2rem 1rem;
+
+        .left-wrapper {
+            gap: 2rem;
+
+            .left-top {
+                h1 {
+                    font-size: 1.8rem;
+                }
+            }
+
+            .left-bottom {
+                .loginImage {
+                    height: 180px;
+                }
+            }
+        }
+    }
+
+    .right-container {
+        border-left: none;
+        border-top: 1px solid rgb(102, 96, 96);
+        padding: 2rem 1rem;
+
+        .right-wrapper {
+
+            .top-text,
+            .login-form,
+            .forget-password,
+            .registerLink {
+                width: 100%;
+            }
+
+            .top-text {
+                h1 {
+                    text-align: left;
+                    font-size: 1.1rem;
+                }
+            }
+
+            .registerLink {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+}
+
+
+/* ========================= */
+/* Small Phones */
+/* ========================= */
+@media (max-width: 480px) {
+
+    .left-container {
+        padding: 1.5rem 1rem;
+
+        .left-wrapper {
+
+            .left-top {
+                h1 {
+                    font-size: 1.5rem;
+                    line-height: 1.3;
+                }
+            }
+
+            .left-bottom {
+                .loginImage {
+                    height: 140px;
+                }
+            }
+        }
+    }
+
+    .right-container {
+        padding: 1.5rem 1rem;
+
+        .right-wrapper {
+
+            .top-text {
+                h1 {
+                    font-size: 1rem;
+                }
+            }
+
+            .login-form {
+                form {
+
+                    input,
+                    button {
+                        padding: 12px;
+                        font-size: 0.95rem;
+                    }
+                }
+            }
+
+            .forget-password,
+            .registerLink {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+        }
+    }
+}
