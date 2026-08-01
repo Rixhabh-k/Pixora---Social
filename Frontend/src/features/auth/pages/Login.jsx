@@ -1,27 +1,22 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import "../style/auth.scss";
-import LoginImg from "../../../../public/Images/Login.webp";
-import axios from "axios";
-import { useAuth } from "../hooks/useAuth";
-
+import "../shared/global.scss";
+import LoginImg from "../../../assets/images/Login.webp";
+import { Link, Navigate, useNavigate } from "react-router";
+import { useState } from "react";
+import { useAuth } from "../hooks/useAuth"; 
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const naviagte = useNavigate()
 
-  const { handelLogin, loading } = useAuth();
-  
-  const navigate = useNavigate()
+  const {handleLogin,laoding} = useAuth()
 
-  function handelLoginForm(e) {
+  async function handelSubmit(e) {
     e.preventDefault();
 
-    handelLogin(username, password).then((res) => {
-      console.log(res);
-    });
+    handleLogin(username,password).then(res=>{console.log(res)})
 
-    navigate("/")
+    // naviagte("/")
   }
 
   return (
@@ -45,31 +40,26 @@ const Login = () => {
             <h1>Login To Pixora</h1>
           </div>
           <div className="login-form">
-            <form
-              onSubmit={(e) => {
-                handelLoginForm(e);
-              }}
-            >
+            <form onSubmit={(e)=>{
+                handelSubmit(e)
+            }}>
               <input
+                value={username}
+                onInput={(e)=>{
+                    setUsername(e.target.value)
+                }}
                 type="text"
                 placeholder="Enter you username or email"
-                value={username}
                 required
-                onInput={(e) => {
-                  setUsername(e.target.value);
-                }}
               />
-              <input
-                type="text"
-                placeholder="Enter you password"
+              <input 
                 value={password}
-                required
-                onInput={(e) => {
-                  setPassword(e.target.value);
+                onInput={(e)=>{
+                    setPassword(e.target.value)
                 }}
-              />
-              <button disabled={loading}>
-                {loading ? "Wait..." : "Login"}
+              type="text" placeholder="Enter you password" required />
+              <button disabled={laoding} >
+                {laoding? "Wait...": "Login"}
               </button>
             </form>
           </div>

@@ -1,30 +1,23 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import "../style/auth.scss";
-import LoginImg from "../../../../public/Images/Login.webp";
-import axios from "axios";
+import { Link, useNavigate } from "react-router";
+import "../shared/global.scss";
+import LoginImg from "../../../assets/images/Login.webp";
+import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 
-const Login = () => {
+
+const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
-  const {handelRegister,loading} = useAuth()
-
   const navigate = useNavigate()
 
-  function handelRegisterForm(e) {
-    e.preventDefault();
+  const {handleRegister} = useAuth()
 
-    handelRegister(email,username,password)
-    .then((res) => {
-      console.log(res);
-    });
+  async function handelSubmit(e) {
+    e.preventDefault()
+    handleRegister(email,username,password).then(res=>{console.log(res)})
 
     navigate("/login")
-
-    
   }
 
   return (
@@ -48,38 +41,24 @@ const Login = () => {
             <h1>Create new account</h1>
           </div>
           <div className="login-form">
-            <form
-              onSubmit={(e) => {
-                handelRegisterForm(e);
-              }}
-            >
-              <input
-                value={username}
-                onInput={(e) => {
-                  setUsername(e.target.value);
-                }}
-                type="text"
-                placeholder="Enter you username"
-              />
-              <input
-                value={email}
-                onInput={(e) => {
-                  setEmail(e.target.value);
-                }}
-                type="text"
-                placeholder="Enter you email"
-              />
-              <input
-                value={password}
-                onInput={(e) => {
-                  setPassword(e.target.value);
-                }}
-                type="text"
-                placeholder="Create your password"
-              />
-             <button disabled={loading}>
-                {loading ? "Creating..." : "Create new account"}
-              </button>
+            <form onSubmit={(e)=>{
+                handelSubmit(e)
+            }} >
+              <input 
+              value={username}
+              onInput={(e)=>{
+                setUsername(e.target.value)
+              }} 
+              type="text" placeholder="Enter you username" />
+              <input value={email}
+              onInput={(e)=>{
+                setEmail(e.target.value)
+              }}  type="text" placeholder="Enter you email" />
+              <input value={password}
+              onInput={(e)=>{
+                setPassword(e.target.value)
+              }}  type="text" placeholder="Create your password" />
+              <button>Create new account</button>
             </form>
           </div>
 
@@ -92,4 +71,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
