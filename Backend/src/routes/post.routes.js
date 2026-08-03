@@ -12,5 +12,6 @@ postRouter.post("/",upload.single("image"),verifyUser,postController.createPostC
 postRouter.get("/",verifyUser,postController.getPostController) 
 postRouter.get("/details/:postId",verifyUser,postController.getPostDetailsController) 
 postRouter.post("/like/:postId",verifyUser,postController.likePostController) 
+postRouter.get("/feed",verifyUser,postController.getFeedController) 
 
 module.exports = postRouter

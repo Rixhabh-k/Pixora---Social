@@ -16,7 +16,7 @@ const Login = () => {
 
     handleLogin(username,password).then(res=>{console.log(res)})
 
-    // naviagte("/")
+    naviagte("/feed")
   }
 
   return (

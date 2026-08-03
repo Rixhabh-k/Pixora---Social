@@ -1,5 +1,6 @@
 const postModel = require("../models/post.model");
 const likeModel = require("../models/like.model");
+const userModel = require("../models/user.model");
 
 const ImageKit = require("@imagekit/nodejs");
 const { toFile } = require("@imagekit/nodejs");
@@ -12,6 +13,7 @@ const imagekit = new ImageKit({
 });
 
 const createPostController = async (req, res) => {
+  
   const file = await imagekit.files.upload({
     file: await toFile(Buffer.from(req.file.buffer), "file"),
     fileName: "test",
@@ -70,31 +72,40 @@ const getPostDetailsController = async (req, res) => {
 };
 
 const likePostController = async (req, res) => {
-  const postId = req.params.postId // which post is liked its ID
-  const username = req.user.username // which user is liking the post its username
+  const postId = req.params.postId; // which post is liked its ID
+  const username = req.user.username; // which user is liking the post its username
 
-  const isPostExist = await postModel.findById(postId)
+  const isPostExist = await postModel.findById(postId);
 
-  if(!isPostExist){
+  if (!isPostExist) {
     return res.status(404).json({
-      message: "post does not exist"
-    })
+      message: "post does not exist",
+    });
   }
 
   const likeRecord = await likeModel.create({
     post: postId,
-    user: username
-  })
+    user: username,
+  });
 
   res.status(200).json({
-    message: "post liked"
-  })
+    message: "post liked",
+  });
+};
 
+const getFeedController = async (req, res) => {
+  const post = await postModel.find().populate("user")
+  
+  res.status(200).json({
+    message: "feed fetched successfully",
+    post,
+  });
 };
 
 module.exports = {
   createPostController,
   getPostController,
   getPostDetailsController,
-  likePostController
+  likePostController,
+  getFeedController,
 };
